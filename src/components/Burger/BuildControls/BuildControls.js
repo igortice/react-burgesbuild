@@ -1,30 +1,35 @@
 import React from 'react';
 
-import './BuildControls.css'
-import BuildControl from './BuildControl/BuildControl'
+import './BuildControls.css';
+import BuildControl from './BuildControl/BuildControl';
 
 const controls = [
   { label: 'Salad', type: 'salad' },
   { label: 'Bacon', type: 'bacon' },
   { label: 'Cheese', type: 'cheese' },
-  { label: 'Meat', type: 'meat' },
+  { label: 'Meat', type: 'meat' }
 ];
 
-const buildControls = (props) => (
-  <div className="BuildControls">
-    <p>Current Price: <strong>{props.price}</strong></p>
+const buildControls = props => (
+  <div className='BuildControls'>
+    <p>
+      Current Price: <strong>{props.price}</strong>
+    </p>
     {controls.map(ctrl => {
-      return <BuildControl
-        key={ctrl.label}
-        label={ctrl.label}
-        ingredientCount={() => props.ingredients[ctrl.type]}
-        removed={() => props.ingredientRemoved(ctrl.type)}
-        added={() => props.ingredientAdded(ctrl.type)} 
-        disabled={props.disabled[ctrl.type]}/>
+      return (
+        <BuildControl
+          key={ctrl.label}
+          label={ctrl.label}
+          ingredientCount={() => props.ingredients[ctrl.type]}
+          removed={() => props.ingredientRemoved(ctrl.type)}
+          added={() => props.ingredientAdded(ctrl.type)}
+          disabled={props.disabled[ctrl.type]}
+        />
+      );
     })}
-    <button 
-      className="OrderButton"
-      disabled={!props.purchasable}>ORDER NOW</button>
+    <button className='OrderButton' disabled={!props.purchasable}>
+      ORDER NOW
+    </button>
   </div>
 );
 
